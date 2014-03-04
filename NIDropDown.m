@@ -52,6 +52,7 @@
         table.layer.cornerRadius = 5;
         table.backgroundColor = [UIColor colorWithRed:0.239 green:0.239 blue:0.239 alpha:1];
         table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        table.separatorInset = UIEdgeInsetsZero;
         table.separatorColor = [UIColor grayColor];
         
         [UIView beginAnimations:nil context:nil];
@@ -105,20 +106,6 @@
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
-    if ([self.imageList count] == [self.list count]) {
-        cell.textLabel.text =[list objectAtIndex:indexPath.row];
-        cell.imageView.image = [imageList objectAtIndex:indexPath.row];
-    } else if ([self.imageList count] > [self.list count]) {
-        cell.textLabel.text =[list objectAtIndex:indexPath.row];
-        if (indexPath.row < [imageList count]) {
-            cell.imageView.image = [imageList objectAtIndex:indexPath.row];
-        }
-    } else if ([self.imageList count] < [self.list count]) {
-        cell.textLabel.text =[list objectAtIndex:indexPath.row];
-        if (indexPath.row < [imageList count]) {
-            cell.imageView.image = [imageList objectAtIndex:indexPath.row];
-        }
-    }
     
     cell.textLabel.textColor = [UIColor whiteColor];
     
@@ -135,15 +122,6 @@
     UITableViewCell *c = [tableView cellForRowAtIndexPath:indexPath];
     [btnSender setTitle:c.textLabel.text forState:UIControlStateNormal];
     
-    for (UIView *subview in btnSender.subviews) {
-        if ([subview isKindOfClass:[UIImageView class]]) {
-            [subview removeFromSuperview];
-        }
-    }
-    imgView.image = c.imageView.image;
-    imgView = [[UIImageView alloc] initWithImage:c.imageView.image];
-    imgView.frame = CGRectMake(5, 5, 25, 25);
-    [btnSender addSubview:imgView];
     [self myDelegate];
 }
 
