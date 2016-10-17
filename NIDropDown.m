@@ -24,15 +24,15 @@
 @synthesize delegate;
 @synthesize animationDirection;
 
-- (id)showDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr:(NSArray *)imgArr:(NSString *)direction {
-    btnSender = b;
+- (id)showDropDown:(UIButton *)button height:(CGFloat *)height array:(NSArray *)array imgArray:(NSArray *)imgArray direction:(NSString *)direction {
+    btnSender = button;
     animationDirection = direction;
     self.table = (UITableView *)[super init];
     if (self) {
         // Initialization code
-        CGRect btn = b.frame;
-        self.list = [NSArray arrayWithArray:arr];
-        self.imageList = [NSArray arrayWithArray:imgArr];
+        CGRect btn = button.frame;
+        self.list = [NSArray arrayWithArray:array];
+        self.imageList = [NSArray arrayWithArray:imgArray];
         if ([direction isEqualToString:@"up"]) {
             self.frame = CGRectMake(btn.origin.x, btn.origin.y, btn.size.width, 0);
             self.layer.shadowOffset = CGSizeMake(-5, -5);
@@ -64,7 +64,7 @@
         }
         table.frame = CGRectMake(0, 0, btn.size.width, *height);
         [UIView commitAnimations];
-        [b.superview addSubview:self];
+        [button.superview addSubview:self];
         [self addSubview:table];
     }
     return self;
@@ -104,7 +104,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     
     cell.textLabel.textColor = [UIColor whiteColor];
